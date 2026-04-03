@@ -110,7 +110,44 @@
     "structures": [],
     "enums": []
   },
-  "actions": [],
+  "actions": [
+    {
+      "objID": "436e9c83-313b-4fb7-e743-b2f3a4fe41b3",
+      "components": [],
+      "connectionLines": [],
+      "localVariables": [],
+      "componentGroups": [],
+      "userProperties": [],
+      "name": "inc_counter"
+    },
+    {
+      "objID": "f1253a39-1c4b-4cee-f449-86b52520bba6",
+      "components": [],
+      "connectionLines": [],
+      "localVariables": [],
+      "componentGroups": [],
+      "userProperties": [],
+      "name": "dec_counter"
+    },
+    {
+      "objID": "22fea2eb-3126-401c-c1ed-795b51b8cf2f",
+      "components": [],
+      "connectionLines": [],
+      "localVariables": [],
+      "componentGroups": [],
+      "userProperties": [],
+      "name": "show_keyboard_test_screen"
+    },
+    {
+      "objID": "ceac3bef-cd08-4ad3-8ee3-f8fd0aa24adf",
+      "components": [],
+      "connectionLines": [],
+      "localVariables": [],
+      "componentGroups": [],
+      "userProperties": [],
+      "name": "show_main_screen"
+    }
+  ],
   "userPages": [
     {
       "objID": "4b40eba7-b31a-468a-b887-11dfd0b6637f",
