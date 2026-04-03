@@ -12,6 +12,8 @@
     "ui.c",
     "ui.h",
     "ui_font_small_font.c",
+    "ui_image_log_eez.c",
+    "ui_image_logo_lvgl.c",
     "vars.h"
   ]
 }
