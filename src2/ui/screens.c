@@ -29,6 +29,17 @@ static void event_handler_cb_main_obj0(lv_event_t *e) {
     }
 }
 
+static void event_handler_cb_keyboard_test_my_textarea(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    if (event == LV_EVENT_VALUE_CHANGED) {
+        lv_obj_t *ta = lv_event_get_target(e);
+        if (tick_value_change_obj != ta) {
+            const char *value = lv_textarea_get_text(ta);
+            set_var_input_text(value);
+        }
+    }
+}
+
 //
 // Screens
 //
@@ -183,9 +194,70 @@ void tick_screen_main() {
     }
 }
 
+void create_screen_keyboard_test() {
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.keyboard_test = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            // my_textarea
+            lv_obj_t *obj = lv_textarea_create(parent_obj);
+            objects.my_textarea = obj;
+            lv_obj_set_pos(obj, 125, 18);
+            lv_obj_set_size(obj, 550, 184);
+            lv_textarea_set_max_length(obj, 128);
+            lv_textarea_set_one_line(obj, false);
+            lv_textarea_set_password_mode(obj, false);
+            lv_obj_add_event_cb(obj, event_handler_cb_keyboard_test_my_textarea, LV_EVENT_ALL, 0);
+        }
+        {
+            lv_obj_t *obj = lv_keyboard_create(parent_obj);
+            objects.obj4 = obj;
+            lv_obj_set_pos(obj, 0, -93);
+            lv_obj_set_size(obj, 550, 186);
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            lv_obj_set_pos(obj, 284, 403);
+            lv_obj_set_size(obj, 233, 48);
+            lv_obj_add_event_cb(obj, action_show_main_screen, LV_EVENT_PRESSED, (void *)0);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_obj_set_style_text_font(obj, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_label_set_text(obj, "Back to Main Screen");
+                }
+            }
+        }
+    }
+    lv_keyboard_set_textarea(objects.obj4, objects.my_textarea);
+    
+    tick_screen_keyboard_test();
+}
+
+void tick_screen_keyboard_test() {
+    {
+        const char *new_val = get_var_input_text();
+        const char *cur_val = lv_textarea_get_text(objects.my_textarea);
+        uint32_t max_length = lv_textarea_get_max_length(objects.my_textarea);
+        if (strncmp(new_val, cur_val, max_length) != 0) {
+            tick_value_change_obj = objects.my_textarea;
+            lv_textarea_set_text(objects.my_textarea, new_val);
+            tick_value_change_obj = NULL;
+        }
+    }
+}
+
 typedef void (*tick_screen_func_t)();
 tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_main,
+    tick_screen_keyboard_test,
 };
 void tick_screen(int screen_index) {
     tick_screen_funcs[screen_index]();
@@ -285,4 +357,5 @@ void create_screens() {
     // Initialize screens
     // Create screens
     create_screen_main();
+    create_screen_keyboard_test();
 }
