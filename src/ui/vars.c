@@ -9,7 +9,21 @@ int32_t counter = 0;
 int32_t selected_item_index = 0;
 
 char text_input[1024] = { 0 };
+char counter_info[256] = { 0 };
+char selected_item_info[256] = { 0 };
 
+
+const char *get_var_counter_info() {
+    // static char counter_info[256];
+    snprintf(counter_info, sizeof(counter_info), "Counter is %d", counter);
+    return counter_info;
+}
+
+void set_var_counter_info(const char *value)
+{
+  strncpy(counter_info, value, sizeof(counter_info));
+  counter_info[sizeof(counter_info) - 1] = 0;
+}
 int32_t get_var_selected_item_index() {
     return selected_item_index;
 }
@@ -19,15 +33,15 @@ void set_var_selected_item_index(int32_t value) {
 }
 
 const char *get_var_selected_item_info() {
-    static char selected_item_info[256];
+    // static char selected_item_info[256];
     snprintf(selected_item_info, sizeof(selected_item_info), "Selected item index is %d", selected_item_index);
     return selected_item_info;
 }
 
-const char *get_var_counter_info() {
-    static char counter_info[256];
-    snprintf(counter_info, sizeof(counter_info), "Counter is %d", counter);
-    return counter_info;
+void set_var_selected_item_info(const char *value)
+{
+  strncpy(selected_item_info, value, sizeof(selected_item_info));
+  selected_item_info[sizeof(selected_item_info) - 1] = 0;
 }
 
 const char *get_var_input_text() {
