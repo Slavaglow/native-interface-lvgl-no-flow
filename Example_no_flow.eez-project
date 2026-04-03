@@ -106,7 +106,40 @@
   },
   "variables": {
     "objID": "c6c71e16-53e1-217f-d03b-cef56c6b037a",
-    "globalVariables": [],
+    "globalVariables": [
+      {
+        "objID": "945d3ebb-3e8e-493f-ba8e-491b5b807bdc",
+        "name": "counter_info",
+        "type": "string",
+        "defaultValue": "\"\"",
+        "persistent": false,
+        "native": false
+      },
+      {
+        "objID": "b49db276-6b56-4d34-b200-39792e09eb73",
+        "name": "selected_item_index",
+        "type": "integer",
+        "defaultValue": "0",
+        "persistent": false,
+        "native": false
+      },
+      {
+        "objID": "9afa8f7b-e82f-498b-edd8-a7c48cca290f",
+        "name": "selected_item_info",
+        "type": "string",
+        "defaultValue": "\"\"",
+        "persistent": false,
+        "native": false
+      },
+      {
+        "objID": "a147397c-12b5-4401-8830-768718e86bc3",
+        "name": "input_text",
+        "type": "string",
+        "defaultValue": "\"\"",
+        "persistent": false,
+        "native": false
+      }
+    ],
     "structures": [],
     "enums": []
   },
